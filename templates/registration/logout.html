@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class='d-flex justify-content-center' style="margin-top:200px; margin-bottom:200px;">
+<div class=''>
+<div class="alert alert-success text-center" role="alert">
+  <h4 class="alert-heading">You are successfully logged out!</h4>
+  <h5  class='text-center'>{% trans "Thanks for spending some time with the site today." %}</h5>
+  <hr>
+  <p class="mb-0">If you need to login again, Click the button below.</p>
+   <p class="btn btn-outline-info"><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></p>
+</div>
+</div>
+</div>
+{% endblock %}

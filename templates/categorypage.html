@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+<!--Section: Group of personal cards-->
+{% block content %}
+	<section class="pt-1 mt-0 pb-3 container-fluid">
+		<!--Grid row-->
+			
+					<div class="row">
+					{% for test in tests %}
+							<div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+							<!--Card-->
+							<div class="card card-personal">
+
+							<!--Card image-->
+							<div class="view">
+								<img class="card-img-top" style="height:200px; width:100%;" src="{{test.designImage.url}}" alt="Card image cap">
+								<a href="#!">
+								<div class="mask rgba-white-slight"></div>
+								</a>
+							</div>
+							<!--Card image-->
+
+							<!--Card content-->
+							<div class="card-body">
+								<!--Title-->
+								<div class="">
+								<a>																		
+									<a class="card-meta float-right" data-toggle="tooltip" data-placement="left" title="View Profile" href="/user/{{test.user}}"><img class="rounded-circle" style="height:24px; width:24px;"   src="{{test.user.profile.profileImage.url}}"></a>
+									<p class="card-meta"><strong>{{test.user.profile.companyName}}</strong></p>
+								</a>
+								</div>
+								<!--Text-->
+								<p class="card-text">{{test.user.profile.tagline}}</p>
+								<hr>
+								<a class="card-meta"><span><i class="fas fa fa-map-marker pr-1"></i>{{test.user.profile.city}},{{test.user.profile.state}}</span></a>
+								<span><p class="card-meta float-right">Posted:{{test.timeuploaded|date:"M,Y"}}</p></span>
+							</div>
+							<!--Card content-->
+							</div>					
+							<!--Card-->
+					</div>
+				{% endfor %}
+	</section>
+
+
+{% endblock %}

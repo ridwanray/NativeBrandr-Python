@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+<!--Section: Group of personal cards-->
+{% block content %}
+<section class="">
+
+<section  style="padding-top:10px; margin-bottom:0px"  class="container-fluid jumbotron">
+	<div class=" text-center">
+            <h4 class=""><b class="white">Hi, I'm <span class="white text-capitalize">{% if user.first_name %}{{user.first_name}}{% else %}{{user}}{% endif %}!</span></h4>        
+    </div>
+    <div class="text-center">
+        <div class="">
+        <span class="">
+		
+			{% if user.profile.profileImage %}
+		
+            <img alt="Maria" 	style="height:80px; width:80px; margin-bottom:-3px;" class="img-circle rounded-circle border" src=" {{user.profile.profileImage.url}}"/>
+			{% else %}																												
+			<img alt="Maria" 	style="height:80px; width:80px; margin-bottom:-3px;" class="img-circle rounded-circle border" src="{% static 'img/holder.jpg'  %}"/>
+			{% endif %}
+	   </div>
+    </div>
+</section>	
+
+<section style="margin-top:-25px"  >    
+        <div class="container ">
+            <section class="card card-body ">
+                <div class="row">
+                        <div class="col-md-4 col-sm-12 col-lg-4 ">
+                                
+                                <ul class="list-unstyled">  
+                                        <li class="text-center"><span>Verification Status: <i class="fa fa-check-circle" style="font-size:20px;color:green"></i></span></li>                                       
+                                </ul>
+                        </div>
+						    <div class="col-md-4 col-sm-12 col-lg-4 ">
+                                
+                                <ul class="list-unstyled">  	
+                                        <li class="text-center">Last Active: {{user.profile.last_visit|naturaltime}}.</li>                                       
+                                </ul>
+                        </div>
+						    <div class="col-md-4 col-sm-12 col-lg-4 ">
+                                
+                                <ul class="list-unstyled">  
+                                        <li class="text-center"><strong>Member Since: </strong>{{user.date_joined|date:"M-Y"}}.</li>                                       
+                                </ul>
+                        </div>
+				</div>
+            </section>
+
+        </div>
+</section>
+
+
+<section style="margin-top:"  >    
+        <div class="container ">
+            <section class="card card-body ">
+                <div class="row">
+						    <div class="col-md-8 col-sm-8 col-lg-8 ">
+                                
+                                 <ul class="list-unstyled">  
+                                        <li class="text-center"><span><i class="fas fa-map-marker-alt" style="font-size:20px;color:green"></i> : {{user.profile.address}}  </span></li>                                       
+                                </ul>
+                        </div>
+						    <div class="col-md-4 col-sm-4 col-lg-4 ">
+                                
+                                <ul class="list-unstyled">  
+                                        <li class="text-center"><strong>Contact:</strong>{{user.profile.phoneNumber}}
+					</p></li>                                       
+                                </ul>
+                        </div>
+				</div>
+            </section>
+
+        </div>
+</section>
+
+
+<section style="margin-top:"  >    
+        <div class="container ">
+            <section class="card card-body ">
+                <div class="row">
+						    <div class="col-md-12 col-sm-12 col-lg-12 ">
+                                
+                                 <ul class="list-unstyled">  
+                                        <li class="text-center"><span>Categories Served :{% for value in user.profile.category %} <span class="badge badge-secondary"> {{value}}</span>{% endfor %}</li>  
+											
+                                </ul>
+								
+								
+							</div>
+				</div>
+            </section>
+
+        </div>
+</section>
+
+<section  style="padding-top:10px; margin-top:-8px; padding-bottom:5px; "  class="container-fluid jumbotron">
+	<div class=" text-center">
+            <h4 class=""><b class="white">About Me</span></h4>        
+    </div>
+
+
+<div class="text-center">
+        <div class="row">
+			 <div class="col-lg-2 col-sm-2 col-md-2">
+		
+				</div>	
+			 <div class="col-lg-8 col-sm-8 col-md-">
+					<p>{{user.profile.aboutMe}}
+					</p>
+			</div>	
+			 <div class="col-lg-2 col-sm-2 col-md-2">
+
+				</div>	
+        </div>
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<section style="margin-top:15px; margin-top:15px;">    
+
+<div class="row center pt-0 mt-20">
+
+		<div class="text-center  col-lg-12 col-md-12 col-sm-12">
+			<button class="site-btn sb-line sb-dark">Designs By {{user}}</span></button>
+		</div>	
+</div>	
+
+<hr>
+</section>
+
+
+
+
+
+
+
+	<section class="pt-1 mt-2 pb-3 container">
+		<!--Grid row-->
+			
+					<div class="row">
+					{% for test in tests %}
+							<div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+							<!--Card-->
+							<div class="card card-personal">
+
+							<!--Card image-->
+							<div class="view">
+								<img class="card-img-top" style="height:200px; width:100%;" src="{{test.designImage.url}}" alt="Card image cap">
+								<a href="#!">
+								<div class="mask rgba-white-slight"></div>
+								</a>
+							</div>
+							<!--Card image-->
+
+							<!--Card content-->
+							<div class="card-body">
+								<!--Title-->
+								<div class="">
+								<a>																		
+									<a   class="card-meta float-right" data-toggle="tooltip" data-placement="left" title="View Profile" href="/user/{{test.user}}" target="_blank"><img class="rounded-circle" style="height:24px; width:24px;"   src="{{test.user.profile.profileImage.url}}"></a>
+									<p class="card-meta"><strong>{{test.user.profile.companyName}}</strong></p>
+								</a>
+								</div>
+								<!--Text-->
+								<p class="card-text">{{test.user.profile.tagline}}</p>
+								<hr>
+								<a class="card-meta"><span><i class="fas fa fa-map-marker pr-1"></i>{{test.user.profile.city}},{{test.user.profile.state}}</span></a>
+								<p class="card-meta float-right">Posted:{{test.timeuploaded|date:"M,Y"}}</p>
+							</div>
+							<!--Card content-->
+							</div>					
+							<!--Card-->
+					</div>
+				{% endfor %}
+	</section>
+
+{% endblock %}

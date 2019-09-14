@@ -1,0 +1,332 @@
+{% load static%}
+
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title class="text-capitalize">Dashboard | {{request.user}}</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{% static 'css/dash_bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{% static 'css/dash_animate.min.css' %}" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS     -->
+     <link href="{% static 'css/dash_light-bootstrap-dashboard.css' %}" rel="stylesheet"/> 
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/dash_pe-icon-7-stroke.css' %}" rel="stylesheet" />
+</head>
+<div class="wrapper">
+    <div class="sidebar" data-color="" data-image="assets/img/full-screen-image-3.jpg">
+
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.custombrand" class="simple-text">
+                    <strong>CustomBrand</strong>
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li >
+                    <a href="user.html">
+                        <i class="pe-7s-user"></i>
+                        <p>Update Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="table.html">
+                        <i class="pe-7s-note2"></i>
+                        <p>Upload New Design</p>
+                    </a>
+                </li>
+				<li>
+                    <a href="table.html">
+                        <i class="pe-7s-note2"></i>
+                        <p>Uploaded Designs </p>
+                    </a>
+                </li>
+                
+                
+			
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand text-capitalize">{{ request.user }}'s Dashboard </div>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                      
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+				
+					
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <b class="caret hidden-sm hidden-xs"></b>
+                                   
+									<p class="hidden-lg hidden-md">
+										Account Option
+										<b class="caret"></b>
+									</p>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="{% url 'auth_logout' %}">Log Out</a></li>
+								<li><a href="{% url 'auth_password_reset' %}">Change Password</a></li>
+                              </ul>
+                        </li>
+                       
+						<li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Your Profile</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Company</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="Company" value="{{user.profile.companyName}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="text" class="form-control" disabled placeholder="{{request.user}}" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control"  disabled placeholder="{{request.user.email}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="{{request.user.first_name}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="{{request.user.last_name}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="Address" value="{{user.profile.address}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="City" value="{{user.profile.city}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="Country" value="{{user.profile.country}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="number" class="form-control" disabled placeholder="ZIP Code">
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Date Joined</label>
+                                                <input type="text" class="form-control text-capitalize" disabled placeholder="Date" value="{{user.date_joined|date:"d-M-Y"}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Phone Number</label>
+                                                <input type="text" class="form-control" disabled placeholder="{{user.profile.phoneNumber}}" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Verified</label>
+                                                <input type="email" class="form-control"  disabled placeholder="Yes">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <textarea rows="5" class="form-control text-capitalize" disabled placeholder="Briefly describe yourself here. Designers/sellers with good profile are easiy partnered...." value="">{{user.profile.aboutMe}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                     <a href="#">
+								
+                                    <img class="avatar border-gray" src="{{user.profile.profileImage.url}}" alt="user logo image"/>
+
+                                      <h4 class="title" style="margin-top:30px"><span class="text-capitalize">{{request.user.first_name}} {{request.user.last_name}}</span><br />
+                                         <small>{{ request.user }}</small>
+                                      </h4>
+                                    </a>
+                                </div>
+                                <p class="description text-center">  <ul class="list-unstyled">  
+                                        <li class="text-center"><span>Categories Served :{% for value in user.profile.category %} <span class="badge badge-secondary"> {{value}}</span>{% endfor %}</li>  
+											
+                                </ul>
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Trending Brands
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">CUSTOMMADE</a> Promoting Brands|
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+
+</body>
+    <!--   Core JS Files   -->
+    <script src="{% static 'js/dash_jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'js/dash_bootstrap.min.js' %}" type="text/javascript"></script>
+
+	<!--  Charts Plugin -->
+	<script src="{% static 'js/dash_chartist.min.js' %}"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'js/dash_bootstrap-notify.js' %}"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{% static 'js/dash_light-bootstrap-dashboard.js?v=1.4.0' %}"></script>
+	
+	<script src="{% static 'js/dash_demo.js' %}"></script>
+<script type="text/javascript">
+    	$(document).ready(function(){
+
+        	demo.initChartist();
+
+        	$.notify({
+            	icon: 'pe-7s-gift',
+            	message: "Welcome! Please keep your profile updated"
+
+            },{
+                type: 'info',
+                timer: 400
+            });
+
+    	});
+	</script>
+</html>

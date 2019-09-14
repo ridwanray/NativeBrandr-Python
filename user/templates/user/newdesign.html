@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+.help-block{color:red;
+            font-weight:bold;
+}
+</style>
+<div class='d-flex justify-content-center' style="margin-top:20px; margin-bottom:30px;">
+<div class='col-sm-6 col-sm-offset-3'>
+<h3 class='text-center'>Upload A New Design!</h3>
+<form method="post" action="{% url 'user:newdesignupload' %}" enctype="multipart/form-data">
+            {% csrf_token %} 
+
+
+                {{ form|crispy  }}
+           <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Submit Design' %}" />
+    
+ 
+        </form>
+		</div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class='d-flex justify-content-center' style="margin-top:200px; margin-bottom:200px;">
+<div class='col-sm-6 col-sm-offset-3'>
+<div class="alert alert-success text-center" role="alert">
+  <h4 class="alert-heading">Great news!</h4>
+  <h5  class='text-center'>{% trans "Your account is now activated." %}</h5>
+  <hr>
+  <p class="mb-0">Feel free to explore the features in the application</p>
+   <p class="btn btn-outline-info"><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></p>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
